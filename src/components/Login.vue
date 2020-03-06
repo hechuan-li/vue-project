@@ -53,6 +53,7 @@ export default {
           if (res.meta.status === 200) {
             window.sessionStorage.setItem('token', res.data.token)
             this.$router.push('/home')
+            this.message('登陆成功')
           }
         } else {
           this.message.error('用户名/密码 错误')
