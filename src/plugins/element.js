@@ -13,8 +13,14 @@ import {
   Col,
   Menu,
   Submenu,
-  MenuItem
-
+  MenuItem,
+  RadioGroup,
+  RadioButton,
+  Breadcrumb,
+  BreadcrumbItem,
+  Table,
+  TableColumn,
+  Pagination
 } from 'element-ui'
 
 Vue.use(Button)
@@ -31,5 +37,12 @@ Vue.use(Col)
 Vue.use(Menu)
 Vue.use(Submenu)
 Vue.use(MenuItem)
+Vue.use(RadioGroup)
+Vue.use(RadioButton)
+Vue.use(Breadcrumb)
+Vue.use(BreadcrumbItem)
+Vue.use(Table)
+Vue.use(TableColumn)
+Vue.use(Pagination)
 
 Vue.prototype.message = Message
