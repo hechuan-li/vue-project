@@ -25,6 +25,7 @@
           <el-radio-button :label="true">收起</el-radio-button>
         </el-radio-group>
       <el-menu
+      default-active="125"
       router
       :collapse-transition='false'
       :collapse="isCollapse"
@@ -65,7 +66,7 @@ export default {
         102: 'el-icon-files',
         145: 'el-icon-view'
       },
-      isCollapse: true
+      isCollapse: false
     }
   },
   created: function () {

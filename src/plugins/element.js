@@ -20,7 +20,9 @@ import {
   BreadcrumbItem,
   Table,
   TableColumn,
-  Pagination
+  Pagination,
+  Switch,
+  Dialog
 } from 'element-ui'
 
 Vue.use(Button)
@@ -44,5 +46,7 @@ Vue.use(BreadcrumbItem)
 Vue.use(Table)
 Vue.use(TableColumn)
 Vue.use(Pagination)
+Vue.use(Switch)
+Vue.use(Dialog)
 
 Vue.prototype.message = Message
