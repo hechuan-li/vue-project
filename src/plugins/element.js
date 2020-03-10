@@ -22,7 +22,10 @@ import {
   TableColumn,
   Pagination,
   Switch,
-  Dialog
+  Dialog,
+  Card,
+  Tag,
+  Tree
 } from 'element-ui'
 
 Vue.use(Button)
@@ -48,5 +51,8 @@ Vue.use(TableColumn)
 Vue.use(Pagination)
 Vue.use(Switch)
 Vue.use(Dialog)
+Vue.use(Card)
+Vue.use(Tag)
+Vue.use(Tree)
 
 Vue.prototype.message = Message

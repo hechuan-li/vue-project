@@ -2,7 +2,8 @@
   <div class="outbox">
     <el-breadcrumb separator-class="el-icon-arrow-right">
       <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item >首页</el-breadcrumb-item>
+      <el-breadcrumb-item >用户管理</el-breadcrumb-item>
+      <el-breadcrumb-item >用户列表</el-breadcrumb-item>
     </el-breadcrumb>
     <el-row class="search">
       <el-col :span="10">
@@ -198,16 +199,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.outbox{
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
-  background-color: #E9EDF1;
-  padding: 20px ;
-  box-sizing: border-box;
-}
+
 .search{
-  margin-top: 20px;
   > .el-button{
   margin-left: 20px;
   text-align: center;
