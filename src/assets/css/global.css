@@ -15,3 +15,6 @@ html,body,#app{
 .el-breadcrumb {
   margin: 20px 0;
 }
+.el-cascader-panel{
+  height: 300px !important;
+}

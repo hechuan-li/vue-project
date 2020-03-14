@@ -25,7 +25,13 @@ import {
   Dialog,
   Card,
   Tag,
-  Tree
+  Tree,
+  Alert,
+  Cascader,
+  Tabs,
+  TabPane,
+  Steps,
+  Step
 } from 'element-ui'
 
 Vue.use(Button)
@@ -54,5 +60,11 @@ Vue.use(Dialog)
 Vue.use(Card)
 Vue.use(Tag)
 Vue.use(Tree)
+Vue.use(Alert)
+Vue.use(Cascader)
+Vue.use(Tabs)
+Vue.use(TabPane)
+Vue.use(Steps)
+Vue.use(Step)
 
 Vue.prototype.message = Message

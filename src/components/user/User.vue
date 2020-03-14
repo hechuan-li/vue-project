@@ -2,110 +2,95 @@
   <div class="outbox">
     <el-breadcrumb separator-class="el-icon-arrow-right">
       <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item >用户管理</el-breadcrumb-item>
-      <el-breadcrumb-item >用户列表</el-breadcrumb-item>
+      <el-breadcrumb-item>用户管理</el-breadcrumb-item>
+      <el-breadcrumb-item>用户列表</el-breadcrumb-item>
     </el-breadcrumb>
     <el-row class="search">
       <el-col :span="10">
         <el-input placeholder="请输入内容" class="input-with-select">
-         <el-button slot="append" icon="el-icon-search"></el-button>
-      </el-input>
-
+          <el-button slot="append" icon="el-icon-search"></el-button>
+        </el-input>
       </el-col>
       <el-button type="primary" round @click="addUser">添加用户</el-button>
     </el-row>
     <el-row>
       <el-col :span="24">
         <el-table :data="userList" fit>
-          <el-table-column
-            type="index"
-            :index="indexMethod"
-            label="#">
-            </el-table-column>
-
-          <el-table-column
-          prop="username"
-          label="姓名">
+          <el-table-column type="index" :index="indexMethod" label="#">
           </el-table-column>
 
-          <el-table-column
-          prop="email"
-          label="邮箱">
-          </el-table-column>
+          <el-table-column prop="username" label="姓名"> </el-table-column>
 
-          <el-table-column
-          prop="mobile"
-          label="电话">
-          </el-table-column>
+          <el-table-column prop="email" label="邮箱"> </el-table-column>
 
-          <el-table-column
-          prop="role_name"
-          label="角色">
-          </el-table-column>
+          <el-table-column prop="mobile" label="电话"> </el-table-column>
+
+          <el-table-column prop="role_name" label="角色"> </el-table-column>
 
           <el-table-column label="状态">
-          <template slot-scope="scope">
-          <el-switch v-model="scope.row.mg_state">
-            </el-switch></template>
-
+            <template slot-scope="scope">
+              <el-switch v-model="scope.row.mg_state"> </el-switch
+            ></template>
           </el-table-column>
 
-          <el-table-column
-          label="操作"
-          width="180px">
-          <template>
-             <el-button type="primary" icon="el-icon-edit" circle></el-button>
-             <el-button type="warning" icon="el-icon-setting" circle></el-button>
-             <el-button type="danger" icon="el-icon-delete" circle></el-button>
-          </template>
+          <el-table-column label="操作" width="180px">
+            <template>
+              <el-button type="primary" icon="el-icon-edit" circle></el-button>
+              <el-button
+                type="warning"
+                icon="el-icon-setting"
+                circle
+              ></el-button>
+              <el-button type="danger" icon="el-icon-delete" circle></el-button>
+            </template>
           </el-table-column>
-      </el-table>
+        </el-table>
       </el-col>
     </el-row>
     <el-row>
       <el-col :span="24">
-        <el-pagination
-          background
-          layout="prev, pager, next"
-          :total="50">
-        </el-pagination>
+            <el-pagination
+              @size-change="handleSizeChange"
+              @current-change="handleCurrentChange"
+              :current-page="queryInfo.pagenum"
+              :page-sizes="[1, 3, 5, 10]"
+              :page-size="queryInfo.pagenum"
+              layout="total, sizes, prev, pager, next, jumper"
+              :total="total">
+            </el-pagination>
       </el-col>
     </el-row>
 
-    <el-dialog
-      title="添加新用户"
-      :visible.sync="dialogVisible"
-      width="30%">
-    <el-form ref="formRules" :model="addForm" :rules="formRules" >
-    <el-form-item prop="username">
-      <el-input placeholder="请输入昵称" v-model="addForm.username">
-        <template slot="prepend">昵称</template>
-      </el-input>
-    </el-form-item>
-    <el-form-item prop="password">
-      <el-input placeholder="请输入密码" v-model="addForm.password">
-        <template slot="prepend">密码 </template>
-      </el-input>
-    </el-form-item>
-    <el-form-item prop="email">
-      <el-input placeholder="请输入邮箱" v-model="addForm.email">
-        <template slot="prepend">邮箱 </template>
-      </el-input>
-    </el-form-item>
-    <el-form-item prop="mobile">
-      <el-input placeholder="请输入电话" v-model="addForm.mobile">
-        <template slot="prepend">电话 </template>
-      </el-input>
-    </el-form-item>
-    <el-form-item>
-      <div class="formItem" >
-      <el-button @click="dialogVisible = false">取 消</el-button>
-      <el-button type="primary" @click="addUser">确 定</el-button>
-      </div>
-    </el-form-item>
-  </el-form>
+    <el-dialog title="添加新用户" :visible.sync="dialogVisible" width="30%">
+      <el-form ref="formRules" :model="addForm" :rules="formRules">
+        <el-form-item prop="username">
+          <el-input placeholder="请输入昵称" v-model="addForm.username">
+            <template slot="prepend">昵称</template>
+          </el-input>
+        </el-form-item>
+        <el-form-item prop="password">
+          <el-input placeholder="请输入密码" v-model="addForm.password">
+            <template slot="prepend">密码 </template>
+          </el-input>
+        </el-form-item>
+        <el-form-item prop="email">
+          <el-input placeholder="请输入邮箱" v-model="addForm.email">
+            <template slot="prepend">邮箱 </template>
+          </el-input>
+        </el-form-item>
+        <el-form-item prop="mobile">
+          <el-input placeholder="请输入电话" v-model="addForm.mobile">
+            <template slot="prepend">电话 </template>
+          </el-input>
+        </el-form-item>
+        <el-form-item>
+          <div class="formItem">
+            <el-button @click="dialogVisible = false">取 消</el-button>
+            <el-button type="primary" @click="addUser">确 定</el-button>
+          </div>
+        </el-form-item>
+      </el-form>
     </el-dialog>
-
   </div>
 </template>
 
@@ -134,8 +119,9 @@ export default {
       queryInfo: {
         query: '',
         pagenum: 1,
-        pagesize: 2
+        pagesize: 10
       },
+      total: 0,
       dialogVisible: false,
       addForm: {
         username: '',
@@ -159,14 +145,21 @@ export default {
         ],
         email: [
           { required: true, message: '请输入邮箱', trigger: 'blur' },
-          { validator: checkEmail, message: '邮箱格式不正确，请重新输入', trigger: 'blur' }
+          {
+            validator: checkEmail,
+            message: '邮箱格式不正确，请重新输入',
+            trigger: 'blur'
+          }
         ],
         mobile: [
           { required: true, message: '请输入手机号码', trigger: 'blur' },
-          { validator: checkMobile, message: '手机号码不正确，请重新输入', trigger: 'blur' }
+          {
+            validator: checkMobile,
+            message: '手机号码不正确，请重新输入',
+            trigger: 'blur'
+          }
         ]
       }
-
     }
   },
   created: function () {
@@ -174,54 +167,62 @@ export default {
   },
   methods: {
     getList: async function () {
-      const { data: res } = await this.$axios.get('/users', { params: this.queryInfo })
+      const { data: res } = await this.$axios.get('/users', {
+        params: this.queryInfo
+      })
       console.log(res)
       this.userList = res.data.users
       this.value = this.userList[0].mg_state
-      console.log(this.userList)
-      console.log(this.value)
+      this.total = res.data.total
     },
     indexMethod (index) {
       return index + 1
     },
-    addUser () {
-      this.dialogVisible = false
+    async addUser () {
+      this.dialogVisible = true
       console.log(this.$refs)
 
-      // this.$refs.addFormRef.validate(async result => {
-      //   if (!result) return this.message.error('请填写完整用户信息')
-      //   const { data: res } = await this.$axios.post('users', this.addForm)
-      //   console.log(res)
-      // })
+      const { data: res } = await this.$axios.post('users', this.addForm)
+      console.log(res)
+      if (res.meta.status === 201) {
+        this.message('add user successful')
+        this.dialogVisible = false
+      }
+    },
+    handleCurrentChange (newpage) {
+      this.queryInfo.pagenum = newpage
+      this.getList()
+    },
+    handleSizeChange (newsize) {
+      this.queryInfo.pagesize = newsize
+      this.getList()
     }
   }
 }
 </script>
 
 <style lang="less" scoped>
-
-.search{
-  > .el-button{
-  margin-left: 20px;
-  text-align: center;
+.search {
+  > .el-button {
+    margin-left: 20px;
+    text-align: center;
   }
 }
-.el-table{
+.el-table {
   height: 500px;
   width: 100%;
   background-color: #ddd;
   margin-top: 20px;
 }
 .el-dialog {
-  .el-input{
+  .el-input {
     margin-top: 25px;
   }
-  .formItem{
+  .formItem {
     text-align: center;
-    .el-button{
+    .el-button {
       margin-top: 40px;
     }
   }
 }
-
 </style>
